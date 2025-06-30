@@ -4,7 +4,7 @@ import { fetchCartItems, removeCartItems, updateCartItems } from "../actions/car
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
-        items: {},
+        items: [],
         isLoading: false,
         error: null
     },
