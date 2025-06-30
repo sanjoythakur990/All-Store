@@ -1,10 +1,12 @@
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import './App.css'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import lazyLoad from './lazyLoad'
 import Navbarr from './components/Navbarr'
 import Loading from './components/Loading'
 import PrivatteRoute from './components/PrivatteRoute'
+import { useDispatch } from 'react-redux'
+import { fetchCartItems } from './store/actions/cartActions'
 
 const Home = lazyLoad('./pages/Home')
 const Cart = lazyLoad('./pages/cart')
@@ -15,6 +17,11 @@ const Wishlist = lazyLoad('./pages/wishlist')
 const Profile = lazyLoad('./pages/profile')
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCartItems())
+  }, [])
 
   return (
     <>
